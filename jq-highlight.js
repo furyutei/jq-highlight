@@ -1,5 +1,5 @@
 /*
- jQuery Highlight plugin
+ jQuery Highlight plugin (jQuery 1.4 or later)
  
  Copyright (c) 2015 furyu <furyutei@gmail.com>
  http://furyu.hatenablog.com/
@@ -18,15 +18,15 @@
 'use strict';
 
 var DEFAULT_OPTIONS = {
-        element : 'span'
-    ,   className : 'highlight'
-    ,   caseSensitive : false
-    ,   wordsOnly : false
-    ,   excludeNodes : ['style', 'script', 'textarea', 'iframe', 'frame']
-    ,   color : '#ffcc33'
-    ,   styleId : 'highlight_style'
-    ,   documentHead : 'head'
-    ,   baseNode : 'body'
+        element : 'span',
+        className : 'highlight',
+        caseSensitive : false,
+        wordsOnly : false,
+        excludeNodes : ['style', 'script', 'textarea', 'iframe', 'frame'],
+        color : '#ffcc33',
+        styleId : 'highlight_style',
+        documentHead : 'head',
+        baseNode : 'body'
     },
     $ = jQuery,
     DEBUG = false,
@@ -56,9 +56,9 @@ $.extend({
         $('<style type="text/css" />').attr('id', styleId).text(css_selector +  '{background-color:' + color + ';}').appendTo($(documentHead));
         current_color[css_selector] = color;
         return $.getHighlightColor();
-    } // end of $.setHighlightColor()
-
-,   getHighlightColor : function(options) {
+    }, // end of $.setHighlightColor()
+    
+    getHighlightColor : function(options) {
         options = $.extend({}, DEFAULT_OPTIONS, options);
         var color,
             element = options.element.toLowerCase(),
@@ -180,9 +180,9 @@ $.fn.unhighlight = function(options) {
     
     var highlight_elements = this.find(element + '.' + className),
         parents = highlight_elements.parent();
-
+    
     debug_log('highlight nodes: ' + highlight_elements.size() + ', parents: ' + parents.size());
-
+    
     highlight_elements.contents().unwrap();
     parents.each(function() {
         this.normalize();
